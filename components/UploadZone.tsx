@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Upload, FileSpreadsheet, CheckCircle2, Loader2 } from "lucide-react";
+import { Upload, CheckCircle2, Loader2 } from "lucide-react";
 
 interface Props {
   onUpload: (file: File) => Promise<void>;
@@ -17,8 +17,10 @@ export default function UploadZone({ onUpload, disabled }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = async (file: File) => {
-    if (!file.name.endsWith(".csv")) {
-      setError("Solo se aceptan archivos .csv");
+    const name = file.name.toLowerCase();
+    const allowed = [".csv", ".xlsx", ".xls"];
+    if (!allowed.some((ext) => name.endsWith(ext))) {
+      setError("Solo se aceptan archivos .csv, .xlsx o .xls");
       return;
     }
     setError("");
@@ -28,7 +30,7 @@ export default function UploadZone({ onUpload, disabled }: Props) {
       await onUpload(file);
       setDone(true);
     } catch (e: any) {
-      setError(e.message || "Error al subir");
+      setError(e.message || "Error al subir el archivo");
     } finally {
       setLoading(false);
     }
@@ -58,7 +60,7 @@ export default function UploadZone({ onUpload, disabled }: Props) {
         <input
           ref={inputRef}
           type="file"
-          accept=".csv"
+          accept=".csv,.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
           className="hidden"
           onChange={(e) => {
             const file = e.target.files?.[0];
@@ -76,12 +78,17 @@ export default function UploadZone({ onUpload, disabled }: Props) {
           {loading
             ? "Subiendo y procesando..."
             : done
-            ? "CSV cargado correctamente"
-            : "Arrastra tu CSV aquí o haz clic"}
+            ? "Archivo cargado correctamente"
+            : "Arrastra tu CSV o Excel aquí o haz clic"}
         </p>
         <p className="text-xs text-slate-500 mt-1">
-          Columnas requeridas: <code className="text-pearl-300">ds</code> (fecha) y{" "}
-          <code className="text-pearl-300">y</code> (ventas)
+          Formatos: <code className="text-pearl-300">.csv</code> ·{" "}
+          <code className="text-pearl-300">.xlsx</code> ·{" "}
+          <code className="text-pearl-300">.xls</code>
+        </p>
+        <p className="text-xs text-slate-500 mt-1">
+          Columnas: <code className="text-pearl-300">fecha / ds</code> y{" "}
+          <code className="text-pearl-300">ventas / y</code>
         </p>
       </div>
       {error && (
