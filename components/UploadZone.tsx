@@ -60,7 +60,7 @@ export default function UploadZone({ onUpload, disabled }: Props) {
         <input
           ref={inputRef}
           type="file"
-          accept=".csv,.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+          accept=".csv,.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv"
           className="hidden"
           onChange={(e) => {
             const file = e.target.files?.[0];
