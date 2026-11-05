@@ -43,7 +43,7 @@ export async function uploadCSV(apiKey: string, file: File): Promise<{ message: 
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail || "Error al subir CSV");
+    throw new Error(err.detail || "Error al subir archivo");
   }
   return res.json();
 }
