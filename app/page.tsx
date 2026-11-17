@@ -60,7 +60,7 @@ export default function HomePage() {
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             Forecasting de ventas con IA para empresas de Latinoamérica.
-            Predicciones precisas, listo para vender y escalar.
+            Pronósticos comerciales explicables, listos para analizar y escalar.
           </p>
         </motion.div>
 
@@ -75,8 +75,8 @@ export default function HomePage() {
             {[
               {
                 icon: BarChart3,
-                title: "Forecast con Prophet",
-                desc: "Modelo robusto con estacionalidad y bandas de confianza al 95%.",
+                title: "Forecast con Holt-Winters",
+                desc: "Suavizamiento exponencial con tendencia y estacionalidad semanal; muestra rangos estimados.",
               },
               {
                 icon: Shield,
