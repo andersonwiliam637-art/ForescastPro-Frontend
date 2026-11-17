@@ -81,7 +81,7 @@ export default function HomePage() {
               {
                 icon: Shield,
                 title: "Acceso por empresa",
-                desc: "Cada empresa usa una API Key individual; la persistencia empresarial se encuentra en la siguiente fase de integración.",
+                desc: "Cada empresa usa una API Key individual; ventas, cargas y modelos ya cuentan con persistencia PostgreSQL independiente.",
               },
               {
                 icon: Zap,
