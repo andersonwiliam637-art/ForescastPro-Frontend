@@ -56,15 +56,26 @@ export default function DashboardPage() {
 
   const handleUpload = async (file: File) => {
     setError("");
-    setStatus("Subiendo CSV...");
-    await uploadCSV(apiKey, file);
-    setStatus("CSV listo. Ahora entrena el modelo.");
+    setStatus("Subiendo y validando archivo...");
+    try {
+      const result = await uploadCSV(apiKey, file);
+      const warnings: string[] = [];
+      if (result.rows_removed > 0) warnings.push(`${result.rows_removed} filas descartadas por datos inválidos.`);
+      if (result.duplicate_rows_aggregated > 0) warnings.push(`${result.duplicate_rows_aggregated} filas del mismo día agrupadas.`);
+      if (result.missing_days_in_range > 0) warnings.push(`${result.missing_days_in_range} días sin registro; completa la serie diaria antes de entrenar.`);
+      const summary = `${result.rows.toLocaleString("es-GT")} días válidos · ${result.date_min} a ${result.date_max}.`;
+      setStatus([summary, ...warnings].join(" "));
+    } catch (uploadError: any) {
+      setStatus("");
+      setError(uploadError?.message || "No se pudo cargar el archivo.");
+      throw uploadError;
+    }
   };
 
   const handleTrain = async () => {
     setLoadingTrain(true);
     setError("");
-    setStatus("Entrenando modelo Prophet...");
+    setStatus("Entrenando modelo Holt-Winters...");
     try {
       await trainModel(apiKey);
       setStatus("Modelo entrenado. Genera el forecast.");
@@ -108,14 +119,6 @@ export default function DashboardPage() {
   const first = forecast[0]?.yhat || 0;
   const last = forecast[forecast.length - 1]?.yhat || 0;
   const trend = first ? ((last - first) / first) * 100 : 0;
-  const confidence =
-    forecast.length > 0
-      ? forecast.reduce((s, d) => {
-          const mid = d.yhat || 1;
-          const band = ((d.yhat_upper - d.yhat_lower) / mid) * 100;
-          return s + Math.max(0, 100 - band);
-        }, 0) / forecast.length
-      : 0;
 
   if (!ready) {
     return (
@@ -179,7 +182,7 @@ export default function DashboardPage() {
                 ) : (
                   <Play className="w-4 h-4" />
                 )}
-                Entrenar Prophet
+                Entrenar modelo
               </button>
               <div className="flex items-center gap-2">
                 <select
@@ -230,7 +233,7 @@ export default function DashboardPage() {
             <KPICards
               avgForecast={avg}
               trend={trend}
-              confidence={confidence}
+              forecastPoints={forecast.length}
               days={days}
             />
           </div>
@@ -241,7 +244,7 @@ export default function DashboardPage() {
           <div className="grid lg:grid-cols-2 gap-6 mb-6">
             <GlassPanel delay={0.1}>
               <h3 className="text-sm font-medium text-slate-300 mb-4">
-                Forecast 2D · Banda de confianza
+                Forecast 2D · Rango estimado
               </h3>
               <ForecastChart data={forecast} />
             </GlassPanel>

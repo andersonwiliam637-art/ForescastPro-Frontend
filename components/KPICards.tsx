@@ -6,11 +6,11 @@ import { TrendingUp, Target, Activity, Calendar } from "lucide-react";
 interface Props {
   avgForecast: number;
   trend: number;
-  confidence: number;
+  forecastPoints: number;
   days: number;
 }
 
-export default function KPICards({ avgForecast, trend, confidence, days }: Props) {
+export default function KPICards({ avgForecast, trend, forecastPoints, days }: Props) {
   const cards = [
     {
       label: "Promedio proyectado",
@@ -20,15 +20,15 @@ export default function KPICards({ avgForecast, trend, confidence, days }: Props
       suffix: "",
     },
     {
-      label: "Tendencia",
+      label: "Variación del horizonte",
       value: `${trend >= 0 ? "+" : ""}${trend.toFixed(1)}%`,
       icon: Activity,
       color: trend >= 0 ? "text-emerald-400" : "text-rose-400",
       suffix: "",
     },
     {
-      label: "Confianza media",
-      value: `${confidence.toFixed(0)}%`,
+      label: "Puntos proyectados",
+      value: forecastPoints.toLocaleString("es-GT"),
       icon: Target,
       color: "text-amber-400",
       suffix: "",

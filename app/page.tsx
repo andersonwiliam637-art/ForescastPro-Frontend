@@ -59,8 +59,8 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Forecasting de ventas con IA para empresas de Latinoamérica.
-            Predicciones precisas, listo para vender y escalar.
+            Forecasting estadístico de ventas para empresas de Latinoamérica.
+            Pronósticos comerciales explicables, listos para analizar y escalar.
           </p>
         </motion.div>
 
@@ -75,18 +75,18 @@ export default function HomePage() {
             {[
               {
                 icon: BarChart3,
-                title: "Forecast con Prophet",
-                desc: "Modelo robusto con estacionalidad y bandas de confianza al 95%.",
+                title: "Forecast con Holt-Winters",
+                desc: "Suavizamiento exponencial con tendencia y estacionalidad semanal; muestra rangos estimados.",
               },
               {
                 icon: Shield,
-                title: "Multi-tenant seguro",
-                desc: "Cada cliente tiene su API Key y sus propios modelos aislados.",
+                title: "Acceso por empresa",
+                desc: "Cada empresa usa una API Key individual; ventas, cargas y modelos ya cuentan con persistencia PostgreSQL independiente.",
               },
               {
                 icon: Zap,
                 title: "Listo para comercializar",
-                desc: "Sube CSV, entrena y visualiza en minutos. Ideal para PyMEs.",
+                desc: "Carga CSV o Excel, entrena el modelo y analiza la proyección.",
               },
             ].map((f, i) => (
               <div
@@ -177,7 +177,7 @@ export default function HomePage() {
         </div>
 
         <p className="text-center text-xs text-slate-600 mt-12">
-          ForecastPro LATAM · Guerrilla Escalable · Powered by Prophet + FastAPI
+          ForecastPro LATAM · Guerrilla Escalable · Powered by Holt-Winters + FastAPI
         </p>
       </div>
     </div>
