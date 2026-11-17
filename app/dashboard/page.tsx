@@ -64,7 +64,7 @@ export default function DashboardPage() {
   const handleTrain = async () => {
     setLoadingTrain(true);
     setError("");
-    setStatus("Entrenando modelo Prophet...");
+    setStatus("Entrenando modelo Holt-Winters...");
     try {
       await trainModel(apiKey);
       setStatus("Modelo entrenado. Genera el forecast.");
