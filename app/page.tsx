@@ -59,7 +59,7 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Forecasting de ventas con IA para empresas de Latinoamérica.
+            Forecasting estadístico de ventas para empresas de Latinoamérica.
             Pronósticos comerciales explicables, listos para analizar y escalar.
           </p>
         </motion.div>
@@ -80,13 +80,13 @@ export default function HomePage() {
               },
               {
                 icon: Shield,
-                title: "Multi-tenant seguro",
-                desc: "Cada cliente tiene su API Key y sus propios modelos aislados.",
+                title: "Acceso por empresa",
+                desc: "Cada empresa usa una API Key individual; la persistencia empresarial se encuentra en la siguiente fase de integración.",
               },
               {
                 icon: Zap,
                 title: "Listo para comercializar",
-                desc: "Sube CSV, entrena y visualiza en minutos. Ideal para PyMEs.",
+                desc: "Carga CSV o Excel, entrena el modelo y analiza la proyección.",
               },
             ].map((f, i) => (
               <div
