@@ -14,7 +14,18 @@ export interface PredictPoint {
   yhat_upper: number;
 }
 
-export interface UploadResponse {\n  tenant_id: string;\n  rows: number;\n  rows_removed: number;\n  duplicate_rows_aggregated: number;\n  missing_days_in_range: number;\n  date_min: string;\n  date_max: string;\n  message: string;\n}\n\nexport interface PredictResponse {
+export interface UploadResponse {
+  tenant_id: string;
+  rows: number;
+  rows_removed: number;
+  duplicate_rows_aggregated: number;
+  missing_days_in_range: number;
+  date_min: string;
+  date_max: string;
+  message: string;
+}
+
+export interface PredictResponse {
   forecast: PredictPoint[];
   days: number;
   tenant?: string;
