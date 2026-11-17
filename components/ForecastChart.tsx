@@ -31,8 +31,8 @@ export default function ForecastChart({ data }: Props) {
         <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="colorForecast" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#38BDF8" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#38BDF8" stopOpacity={0} />
+              <stop offset="5%" stopColor="#ef4444" stopOpacity={0.4} />
+              <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorBand" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#64748B" stopOpacity={0.25} />
@@ -55,7 +55,7 @@ export default function ForecastChart({ data }: Props) {
           <Tooltip
             contentStyle={{
               background: "rgba(15, 23, 42, 0.95)",
-              border: "1px solid rgba(56, 189, 248, 0.3)",
+              border: "1px solid rgba(239, 68, 68, 0.3)",
               borderRadius: "12px",
               color: "#e2e8f0",
             }}
@@ -81,7 +81,7 @@ export default function ForecastChart({ data }: Props) {
           <Area
             type="monotone"
             dataKey="forecast"
-            stroke="#38BDF8"
+            stroke="#ef4444"
             strokeWidth={2.5}
             fill="url(#colorForecast)"
             name="Forecast"
