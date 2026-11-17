@@ -14,7 +14,7 @@ export interface PredictPoint {
   yhat_upper: number;
 }
 
-export interface PredictResponse {
+export interface UploadResponse {\n  tenant_id: string;\n  rows: number;\n  rows_removed: number;\n  duplicate_rows_aggregated: number;\n  missing_days_in_range: number;\n  date_min: string;\n  date_max: string;\n  message: string;\n}\n\nexport interface PredictResponse {
   forecast: PredictPoint[];
   days: number;
   tenant?: string;
@@ -33,7 +33,7 @@ export async function createTenant(name: string, email?: string): Promise<Tenant
   return res.json();
 }
 
-export async function uploadCSV(apiKey: string, file: File): Promise<{ message: string; rows?: number }> {
+export async function uploadCSV(apiKey: string, file: File): Promise<UploadResponse> {
   const form = new FormData();
   form.append("file", file);
   const res = await fetch(`${API_BASE}/upload`, {
