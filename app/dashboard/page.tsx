@@ -56,9 +56,20 @@ export default function DashboardPage() {
 
   const handleUpload = async (file: File) => {
     setError("");
-    setStatus("Subiendo CSV...");
-    await uploadCSV(apiKey, file);
-    setStatus("CSV listo. Ahora entrena el modelo.");
+    setStatus("Subiendo y validando archivo...");
+    try {
+      const result = await uploadCSV(apiKey, file);
+      const warnings: string[] = [];
+      if (result.rows_removed > 0) warnings.push(`${result.rows_removed} filas descartadas por datos inválidos.`);
+      if (result.duplicate_rows_aggregated > 0) warnings.push(`${result.duplicate_rows_aggregated} filas del mismo día agrupadas.`);
+      if (result.missing_days_in_range > 0) warnings.push(`${result.missing_days_in_range} días sin registro; completa la serie diaria antes de entrenar.`);
+      const summary = `${result.rows.toLocaleString("es-GT")} días válidos · ${result.date_min} a ${result.date_max}.`;
+      setStatus([summary, ...warnings].join(" "));
+    } catch (uploadError: any) {
+      setStatus("");
+      setError(uploadError?.message || "No se pudo cargar el archivo.");
+      throw uploadError;
+    }
   };
 
   const handleTrain = async () => {
