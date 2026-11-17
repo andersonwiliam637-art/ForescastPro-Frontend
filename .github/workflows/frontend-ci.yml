@@ -2,7 +2,7 @@ name: ForecastPro Frontend CI
 
 on:
   push:
-    branches: [main, audit/enterprise-hardening]
+    branches: [main, audit/enterprise-hardening, design/executive-intelligence]
   pull_request:
     branches: [main]
 
