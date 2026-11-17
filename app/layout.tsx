@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "ForecastPro LATAM | Dashboard Predictivo de Ventas",
   description:
     "SaaS de forecasting de ventas con IA para Latinoamérica. Predicciones precisas, multi-tenant y listo para PyMEs.",
-  keywords: ["forecasting", "ventas", "IA", "LATAM", "Guatemala", "Prophet"],
+  keywords: ["forecasting", "ventas", "IA", "LATAM", "Guatemala", "Holt-Winters"],
 };
 
 export default function RootLayout({
