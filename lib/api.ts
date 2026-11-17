@@ -14,6 +14,13 @@ export interface PredictPoint {
   yhat_upper: number;
 }
 
+export interface DetectedTable {
+  source: string;
+  date_column: string;
+  sales_column: string;
+  rows_detected: number;
+}
+
 export interface UploadResponse {
   tenant_id: string;
   rows: number;
@@ -23,6 +30,13 @@ export interface UploadResponse {
   date_min: string;
   date_max: string;
   message: string;
+  file_format?: string;
+  detected_table_count?: number;
+  detected_tables?: DetectedTable[];
+  detected_date_column?: string;
+  detected_sales_column?: string;
+  detected_source_count?: number;
+  detected_sources?: string;
 }
 
 export interface PredictResponse {
