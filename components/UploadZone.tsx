@@ -76,7 +76,6 @@ export default function UploadZone({ onUpload, disabled }: Props) {
             const file = e.target.files?.[0];
             if (file) handleFile(file);
             e.currentTarget.value = "";
-            e.currentTarget.value = "";
           }}
         />
         {loading ? (
