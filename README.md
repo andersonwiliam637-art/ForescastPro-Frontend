@@ -9,7 +9,7 @@ Frontend Next.js 14 + TypeScript + Tailwind + Framer Motion + React Three Fiber.
 - Visualización 3D interactiva del forecast
 - Flujo comercial completo:
   1. Crear tenant → API Key
-  2. Subir CSV o Excel (.xlsx/.xls)
+  2. Subir CSV/Excel o Excel (.xlsx/.xls)
   3. Entrenar modelo Holt-Winters
   4. Generar forecast (30/60/90 días)
   5. KPIs + gráfica 2D + 3D + tabla + descarga
