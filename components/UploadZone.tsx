@@ -20,7 +20,11 @@ export default function UploadZone({ onUpload, disabled }: Props) {
     const name = file.name.toLowerCase();
     const allowed = [".csv", ".xlsx", ".xls"];
     if (!allowed.some((ext) => name.endsWith(ext))) {
-      setError("Solo se aceptan archivos .csv, .xlsx o .xls (máximo 15 MB)");
+      setError("Formato no admitido. Usa CSV, XLSX o XLS.");
+      return;
+    }
+    if (file.size > 15 * 1024 * 1024) {
+      setError("El archivo supera el límite de 15 MB.");
       return;
     }
     setError("");
@@ -47,6 +51,7 @@ export default function UploadZone({ onUpload, disabled }: Props) {
         onDrop={(e) => {
           e.preventDefault();
           setDragging(false);
+          if (disabled) return;
           const file = e.dataTransfer.files[0];
           if (file) handleFile(file);
         }}
@@ -65,6 +70,7 @@ export default function UploadZone({ onUpload, disabled }: Props) {
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) handleFile(file);
+            e.currentTarget.value = "";
           }}
         />
         {loading ? (
