@@ -19,7 +19,7 @@ function ForecastBars({ data }: { data: PredictPoint[] }) {
           number
         ],
         height,
-        color: new THREE.Color().setHSL(0.55 - (i / 24) * 0.15, 0.7, 0.55),
+        color: new THREE.Color().setHSL((i / 24) * 0.035, 0.78, 0.55),
       };
     });
   }, [data]);
@@ -43,7 +43,7 @@ function ForecastBars({ data }: { data: PredictPoint[] }) {
       {/* Floor plane */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} receiveShadow>
         <planeGeometry args={[20, 10]} />
-        <meshStandardMaterial color="#0f172a" metalness={0.8} roughness={0.4} />
+        <meshStandardMaterial color="#11141b" metalness={0.8} roughness={0.4} />
       </mesh>
     </group>
   );
@@ -55,7 +55,7 @@ interface Props {
 
 export default function Forecast3D({ data }: Props) {
   return (
-    <div className="w-full h-[280px] md:h-[340px] rounded-xl overflow-hidden bg-slate-900/50 border border-slate-700/40">
+    <div className="w-full h-[280px] md:h-[340px] rounded-xl overflow-hidden bg-[#0c0f14] border border-white/10">
       <Canvas
         camera={{ position: [0, 4, 9], fov: 45 }}
         shadows
@@ -68,7 +68,7 @@ export default function Forecast3D({ data }: Props) {
           castShadow
           shadow-mapSize={[1024, 1024]}
         />
-        <pointLight position={[-4, 3, -2]} intensity={0.5} color="#38BDF8" />
+        <pointLight position={[-4, 3, -2]} intensity={0.5} color="#ef4444" />
         <ForecastBars data={data} />
         <OrbitControls
           enableZoom={true}
