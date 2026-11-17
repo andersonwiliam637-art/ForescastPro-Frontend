@@ -2,12 +2,12 @@
 
 Frontend Next.js 14 + TypeScript + Tailwind + Framer Motion + React Three Fiber.
 
-## Características
+## Características actuales del MVP
 
 - Tema gris oscuro + azul perla con destellos
 - Glassmorphism y animaciones fluidas
 - Visualización 3D interactiva del forecast
-- Flujo comercial completo:
+- Flujo funcional actual:
   1. Crear tenant → API Key
   2. Subir archivos CSV o Excel (.xlsx/.xls)
   3. Entrenar modelo Holt-Winters
