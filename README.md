@@ -9,8 +9,8 @@ Frontend Next.js 14 + TypeScript + Tailwind + Framer Motion + React Three Fiber.
 - Visualización 3D interactiva del forecast
 - Flujo comercial completo:
   1. Crear tenant → API Key
-  2. Subir CSV
-  3. Entrenar modelo Prophet
+  2. Subir CSV o Excel (.xlsx/.xls)
+  3. Entrenar modelo Holt-Winters
   4. Generar forecast (30/60/90 días)
   5. KPIs + gráfica 2D + 3D + tabla + descarga
 
@@ -62,5 +62,5 @@ lib/api.ts          → Cliente de la API
 ## Notas Master Senior
 
 - Diseño pensado para vender a PyMEs LATAM.
-- El 3D es el “wow”; el flujo CSV → Train → Predict es lo que cierra la venta.
+- El 3D es el “wow”; el flujo CSV/Excel → Train → Predict es lo que cierra la venta.
 - Free tier de Vercel es suficiente para el MVP.
