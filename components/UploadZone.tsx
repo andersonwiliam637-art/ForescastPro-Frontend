@@ -20,7 +20,7 @@ export default function UploadZone({ onUpload, disabled }: Props) {
     const name = file.name.toLowerCase();
     const allowed = [".csv", ".xlsx", ".xls"];
     if (!allowed.some((ext) => name.endsWith(ext))) {
-      setError("Solo se aceptan archivos .csv, .xlsx o .xls");
+      setError("Solo se aceptan archivos .csv, .xlsx o .xls (máximo 15 MB)");
       return;
     }
     setError("");
@@ -87,7 +87,7 @@ export default function UploadZone({ onUpload, disabled }: Props) {
           <code className="text-pearl-300">.xls</code>
         </p>
         <p className="text-xs text-slate-500 mt-1">
-          Columnas: <code className="text-pearl-300">fecha / ds</code> y{" "}
+          Límite: 15 MB · Columnas: <code className="text-pearl-300">fecha / ds</code> y{" "}
           <code className="text-pearl-300">ventas / y</code>
         </p>
       </div>
