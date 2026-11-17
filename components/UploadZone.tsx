@@ -27,10 +27,6 @@ export default function UploadZone({ onUpload, disabled }: Props) {
       setError("El archivo supera el límite de 15 MB.");
       return;
     }
-    if (file.size > 15 * 1024 * 1024) {
-      setError("El archivo supera el límite de 15 MB.");
-      return;
-    }
     setError("");
     setLoading(true);
     setDone(false);
@@ -55,7 +51,6 @@ export default function UploadZone({ onUpload, disabled }: Props) {
         onDrop={(e) => {
           e.preventDefault();
           setDragging(false);
-          if (disabled) return;
           if (disabled) return;
           const file = e.dataTransfer.files[0];
           if (file) handleFile(file);
