@@ -177,7 +177,7 @@ export default function HomePage() {
         </div>
 
         <p className="text-center text-xs text-slate-600 mt-12">
-          ForecastPro LATAM · Guerrilla Escalable · Powered by Prophet + FastAPI
+          ForecastPro LATAM · Guerrilla Escalable · Powered by Holt-Winters + FastAPI
         </p>
       </div>
     </div>
